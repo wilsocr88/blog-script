@@ -1,11 +1,18 @@
 // Convert Markdown to HTML
 // https://showdownjs.com
-import { showdown } from "showdown";
-import { showAll, hideAll } from "./utils";
-import { main } from "./elements";
+import Showdown from "showdown";
+import { showAll, hideAll, mkElem, checkLinks, $ } from "./utils";
+import {
+    main,
+    nextLinks,
+    lastLinks,
+    previousLinks,
+    listLinks,
+    backLinks,
+} from "./elements";
 
 export function render(text, current) {
-    const converter = new showdown.Converter();
+    const converter = new Showdown.Converter();
 
     // Make sure all inline links are rendered with a target="_blank"
     converter.setOption("openLinksInNewWindow", true);
@@ -28,30 +35,6 @@ export function showList(entries) {
     main.innerHTML = "";
     const list = mkElem("ul");
     const listItems = makeListItems(entries);
-    for (let i = 0; i < listItems.length; i++) {
-        list.appendChild(listItems[i]);
-    }
-    showAll(backLinks);
-    main.appendChild(list);
-}
-
-export function showSearchResults(entries) {
-    $("#searchBar").value = localStorage.getItem("searchQuery") || "";
-    hideAll(nextLinks);
-    hideAll(lastLinks);
-    hideAll(previousLinks);
-    hideAll(listLinks);
-    main.innerHTML = "";
-    const list = mkElem("ul");
-    const listItems = makeSearchResults(entries);
-    if (listItems.length === 0) {
-        const center = mkElem("center");
-        const h1 = mkElem("h1");
-        h1.innerText = "No results found";
-        center.appendChild(h1);
-        main.appendChild(center);
-        return;
-    }
     for (let i = 0; i < listItems.length; i++) {
         list.appendChild(listItems[i]);
     }
@@ -87,35 +70,6 @@ function makeListItems(entries) {
     return listItems;
 }
 
-function makeSearchResults(entries) {
-    let listItems = [];
-
-    for (let i = 1; i < entries.length; i++) {
-        const text = entries[i];
-        const title = text[1]
-            .split("\n")[0]
-            .replace("#", "")
-            .replace("#", "")
-            .replace("#", "")
-            .trim();
-
-        const link = mkElem("a");
-        link.href = `#${text[0]}`;
-        link.innerHTML = title;
-
-        const li = mkElem("li");
-        li.appendChild(link);
-
-        // Newer links at the top
-        if (listItems.length === 0) {
-            listItems.push(li);
-        } else {
-            listItems.unshift(li);
-        }
-    }
-    return listItems;
-}
-
 export function setOnClicks(elements, callback) {
     for (let i = 0; i < elements.length; i++) {
         elements[i].childNodes[1].onclick = callback;
@@ -129,4 +83,11 @@ export function feedLinks() {
     showAll(previousLinks);
     showAll(listLinks);
     hideAll(backLinks);
+}
+
+export function showLoading() {
+    const h1 = mkElem("h1");
+    h1.innerText = "Loading...";
+    main.innerHTML = "";
+    main.appendChild(h1);
 }

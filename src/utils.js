@@ -1,3 +1,5 @@
+import { nextLinks, previousLinks, lastLinks } from "./elements";
+
 /**
  * Get current hash value from URL
  * @returns {string} current hash value

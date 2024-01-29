@@ -1,14 +1,11 @@
-import { loadEntries } from "./load";
-import { getCurrent } from "./utils";
+import { loadEntry } from "./load";
+import { getCurrent, $ } from "./utils";
 import { feedLinks } from "./view";
 
 /**
  * Navigate back to main feed
  */
 export function backToFeed() {
-    localStorage.removeItem("searchQuery");
-    localStorage.removeItem("searchResults");
-    $("#searchBar").value = "";
     feedLinks();
     lastEntry();
 }
@@ -20,7 +17,6 @@ export function nextEntry() {
     let next = parseInt(getCurrent()) + 1;
     if (next > window.config.latest) next = window.config.latest;
     window.location.hash = "#" + next;
-    loadEntries();
 }
 
 /**
@@ -30,7 +26,6 @@ export function previousEntry() {
     let prev = parseInt(getCurrent()) - 1;
     if (prev < 1) prev = 1;
     window.location.hash = "#" + prev;
-    loadEntries();
 }
 
 /**
@@ -38,5 +33,4 @@ export function previousEntry() {
  */
 export function lastEntry() {
     window.location.hash = "#" + window.config.latest;
-    loadEntries();
 }
