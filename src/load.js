@@ -1,10 +1,6 @@
-import { getCurrent, hideAll, $ } from "./utils";
+import { getCurrent, hideAll } from "./utils";
 import { showList, feedLinks, render, showLoading } from "./view";
 import { nextLinks, previousLinks, lastLinks, listLinks } from "./elements";
-
-export function getEntriesFromMemory() {
-    return JSON.parse(localStorage.getItem("md-entries")) || [];
-}
 
 // Get Markdown source file for the current entry
 export function loadEntry() {
