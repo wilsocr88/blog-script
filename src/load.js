@@ -19,16 +19,16 @@ export function loadEntry() {
     }
 
     // Don't allow paging forward past the latest entry
-    const currentInt = parseInt(getCurrent());
+    const currentInt = parseInt(current);
     if (currentInt > window.config.latest) {
         current = window.config.latest;
     }
-    // If we're not on the main blog feed, don't show blog feed controls
-    if (isNaN(currentInt)) hideFeedLinks();
-
     fetch(window.config.entryFolder + "/" + current + ".md")
         .then(res => res.text())
-        .then(res => render(res, currentInt));
+        .then(res => render(res, currentInt))
+        // If we're not on the main blog feed, don't show blog feed controls
+        .finally(() => isNaN(currentInt) && hideFeedLinks());
+    // We have to do this ^ in a "finally" so all of the links will actually be rendered before we try to hide them
 }
 
 /**
