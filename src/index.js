@@ -1,4 +1,4 @@
-import { fetchAllEntries, loadEntry } from "./load";
+import { loadEntry } from "./load";
 import { backLinks, lastLinks, nextLinks, previousLinks } from "./elements";
 import { setOnClicks } from "./view";
 import { backToFeed, lastEntry, nextEntry, previousEntry } from "./nav";
