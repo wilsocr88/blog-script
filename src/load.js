@@ -15,9 +15,7 @@ export function loadEntry() {
     feedLinks();
     let current = getCurrent();
     if (current === "list") {
-        return fetchAllEntries().then(res => {
-            showList(res);
-        });
+        return fetchAllEntries().then(res => showList(res));
     }
 
     // Don't allow paging forward past the latest entry
@@ -30,9 +28,7 @@ export function loadEntry() {
 
     fetch(window.config.entryFolder + "/" + current + ".md")
         .then(res => res.text())
-        .then(res => {
-            render(res, currentInt);
-        });
+        .then(res => render(res, currentInt));
 }
 
 /**
