@@ -17,4 +17,4 @@ To publish an entry to the main sequential feed, add the next entry's incremente
 
 All entries in the main feed have a unique URL via their hash (`website.com/blog/index.html#5`).
 
-Named entries can also be created outside of the main feed (not accessible by pressing the next/previous buttons or in the list) by creating a markdownfile with string name (`example.md`) and navigating directly to that hash URL (`website.com/blog/index.html#example`).
+Named entries can also be created outside of the main feed (not accessible by pressing the next/previous buttons or in the list) by creating a Markdown file with string name (`example.md`) and navigating directly to that hash URL (`website.com/blog/index.html#example`).
