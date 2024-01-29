@@ -1,5 +1,3 @@
-import { nextLinks, previousLinks, lastLinks } from "./elements";
-
 /**
  * Get current hash value from URL
  * @returns {string} current hash value
@@ -52,27 +50,5 @@ export function hideAll(links) {
 export function showAll(links) {
     for (let i = 0; i < links.length; i++) {
         links[i].style.display = "";
-    }
-}
-
-/**
- * Check if we should hide the previous or next/last buttons
- * @param {string} current
- */
-export function checkLinks(current) {
-    // Hide the next/last buttons if we're on the latest entry
-    if (current === window.config.latest) {
-        hideAll(nextLinks);
-        hideAll(lastLinks);
-    } else {
-        showAll(nextLinks);
-        showAll(lastLinks);
-    }
-
-    // Hide the previous button if we're on the first entry
-    if (current === 1) {
-        hideAll(previousLinks);
-    } else {
-        showAll(previousLinks);
     }
 }

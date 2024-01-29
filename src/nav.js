@@ -1,5 +1,4 @@
-import { loadEntry } from "./load";
-import { getCurrent, $ } from "./utils";
+import { getCurrent } from "./utils";
 import { feedLinks } from "./view";
 
 /**

@@ -1,8 +1,15 @@
-import { getCurrent, hideAll } from "./utils";
-import { showList, feedLinks, render, showLoading } from "./view";
-import { nextLinks, previousLinks, lastLinks, listLinks } from "./elements";
+import { getCurrent } from "./utils";
+import {
+    showList,
+    feedLinks,
+    render,
+    showLoading,
+    hideFeedLinks,
+} from "./view";
 
-// Get Markdown source file for the current entry
+/**
+ * Get markdown file for current entry and render it (or show list view)
+ */
 export function loadEntry() {
     showLoading();
     feedLinks();
@@ -17,28 +24,22 @@ export function loadEntry() {
     const currentInt = parseInt(getCurrent());
     if (currentInt > window.config.latest) {
         current = window.config.latest;
-    } else if (isNaN(currentInt)) {
-        // Handle non-numbered entries
-        current = getCurrent();
     }
+    // If we're not on the main blog feed, don't show blog feed controls
+    if (isNaN(currentInt)) hideFeedLinks();
 
     fetch(window.config.entryFolder + "/" + current + ".md")
         .then(res => res.text())
         .then(res => {
             render(res, currentInt);
-        })
-        .catch(e => console.error(e))
-        .finally(() => {
-            if (isNaN(current)) {
-                hideAll(listLinks);
-                hideAll(nextLinks);
-                hideAll(lastLinks);
-                hideAll(previousLinks);
-            }
         });
 }
 
-export async function fetchAllEntries() {
+/**
+ * Fetch full blog feed history (from 1 to the currently configured latest entry)
+ * @returns {Object} All entries as number: "Markdown text"
+ */
+async function fetchAllEntries() {
     let cache = {};
     for (let i = 1; i <= window.config.latest; i++) {
         const text = await fetch(
