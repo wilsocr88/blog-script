@@ -4,6 +4,8 @@ A minimal, frontend-only blog script with Markdown entries and static URLs.
 
 ## Requirements
 
+NodeJS/NPM/NPX
+
 A webhost with Cross Origin (CORS) Support so you can `fetch` the entries from the server.
 
 ## Getting started
