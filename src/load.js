@@ -38,9 +38,9 @@ export function loadEntry() {
 async function fetchAllEntries() {
     let cache = {};
     for (let i = 1; i <= window.config.latest; i++) {
-        const text = await fetch(
-            window.config.entryFolder + "/" + i + ".md"
-        ).then(res => res.text());
+        const text = await fetch(window.config.entryFolder + "/" + i + ".md", {
+            headers: { range: "bytes=0-" + window.config.maxLoadInBytes },
+        }).then(res => res.text());
         cache[i] = text;
     }
     return cache;

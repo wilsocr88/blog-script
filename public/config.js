@@ -6,4 +6,5 @@ window.config = {
     lastLinksClass: "lastlink",
     listLinksClass: "listlink",
     backLinksClass: "backlink",
+    maxLoadInBytes: 64,
 };
