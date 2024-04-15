@@ -7,7 +7,6 @@ import {
     nextLinks,
     lastLinks,
     previousLinks,
-    listLinks,
     backLinks,
 } from "./elements";
 
@@ -66,7 +65,6 @@ export function feedLinks() {
     showAll(nextLinks);
     showAll(lastLinks);
     showAll(previousLinks);
-    showAll(listLinks);
     hideAll(backLinks);
 }
 
@@ -87,7 +85,6 @@ export function hideFeedLinks() {
     hideAll(nextLinks);
     hideAll(lastLinks);
     hideAll(previousLinks);
-    hideAll(listLinks);
 }
 
 /**
