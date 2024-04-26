@@ -1,6 +1,6 @@
 # Blog Script
 
-A minimal, frontend-only blog script with Markdown entries and static URLs.
+A minimal, frontend-only blog script with Markdown entries and static URLs. Designed for use with [Neocities](https://neocities.org).
 
 ## Requirements
 
