@@ -11,9 +11,8 @@ A webhost with Cross Origin (CORS) Support so you can `fetch` the entries from t
 ## Getting started
 
 1. Install dependencies. `npm install`
-2. Install development dependencies. `npm install --only=dev`
-3. Run `npm run build` or `npx webpack`
-4. Deploy the contents of the `/dist` directory.
+2. Run `npm run build` or `npx webpack`
+3. Deploy the contents of the `/dist` directory.
 
 ## Publishing An Entry
 
