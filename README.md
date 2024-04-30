@@ -1,6 +1,6 @@
 # Blog Script
 
-A minimal, frontend-only blog script with Markdown entries and static URLs. Designed for use with [Neocities](https://neocities.org).
+A minimal, frontend-only blog script with Markdown entries and static URLs. Designed for use with [Neocities](https://neocities.org), specifically with the [Supporter Plan](https://neocities.org/supporter) for Cross Origin (CORS) support.
 
 ## Requirements
 
